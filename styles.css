@@ -1,0 +1,197 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * DR. DOOM design system — dark metallic green, gunmetal, emerald glow.
+ * All colors in oklch.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-doom-green: var(--doom-green);
+  --color-doom-glow: var(--doom-glow);
+  --color-doom-metal: var(--doom-metal);
+  --color-doom-gold: var(--doom-gold);
+  --font-display: "Cinzel", "Orbitron", serif;
+  --font-mono: "Share Tech Mono", monospace;
+  --font-sans: "Rajdhani", sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Dr. Doom palette */
+  --background: oklch(0.14 0.02 150);
+  --foreground: oklch(0.95 0.04 145);
+  --card: oklch(0.18 0.03 150);
+  --card-foreground: oklch(0.95 0.04 145);
+  --popover: oklch(0.16 0.03 150);
+  --popover-foreground: oklch(0.95 0.04 145);
+  --primary: oklch(0.55 0.18 150);
+  --primary-foreground: oklch(0.1 0.02 150);
+  --secondary: oklch(0.25 0.04 150);
+  --secondary-foreground: oklch(0.95 0.04 145);
+  --muted: oklch(0.22 0.03 150);
+  --muted-foreground: oklch(0.7 0.05 145);
+  --accent: oklch(0.65 0.15 145);
+  --accent-foreground: oklch(0.1 0.02 150);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.3 0.06 150 / 50%);
+  --input: oklch(0.25 0.04 150);
+  --ring: oklch(0.6 0.18 150);
+
+  --doom-green: oklch(0.55 0.2 145);
+  --doom-glow: oklch(0.75 0.22 145);
+  --doom-metal: oklch(0.3 0.04 150);
+  --doom-gold: oklch(0.78 0.14 90);
+
+  --gradient-doom: linear-gradient(135deg, oklch(0.18 0.03 150) 0%, oklch(0.1 0.02 150) 50%, oklch(0.22 0.06 150) 100%);
+  --gradient-emerald: linear-gradient(135deg, var(--doom-green) 0%, var(--doom-glow) 100%);
+  --gradient-metal: linear-gradient(180deg, oklch(0.3 0.04 150) 0%, oklch(0.18 0.03 150) 100%);
+  --shadow-doom: 0 10px 40px -10px oklch(0.55 0.2 145 / 0.5);
+  --shadow-glow: 0 0 30px oklch(0.65 0.22 145 / 0.6), 0 0 60px oklch(0.55 0.2 145 / 0.3);
+  --shadow-inset: inset 0 1px 0 oklch(0.6 0.15 145 / 0.2), inset 0 -1px 0 oklch(0 0 0 / 0.5);
+}
+
+.dark {
+  --background: oklch(0.14 0.02 150);
+  --foreground: oklch(0.95 0.04 145);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    cursor: none;
+    background-image:
+      radial-gradient(ellipse at top, oklch(0.25 0.08 150 / 0.4) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, oklch(0.2 0.06 145 / 0.3) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer components {
+  .doom-panel {
+    background: var(--gradient-doom);
+    border: 1px solid oklch(0.4 0.1 150 / 0.4);
+    box-shadow: var(--shadow-inset), var(--shadow-doom);
+    position: relative;
+  }
+  .doom-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, oklch(0.6 0.15 145 / 0.05) 50%, transparent 60%);
+    pointer-events: none;
+  }
+  .doom-glow-text {
+    color: var(--doom-glow);
+    text-shadow: 0 0 10px oklch(0.65 0.22 145 / 0.6), 0 0 30px oklch(0.55 0.2 145 / 0.3);
+  }
+  .doom-rivet {
+    position: relative;
+  }
+  .doom-rivet::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: radial-gradient(circle, oklch(0.5 0.05 150) 0%, oklch(0.2 0.03 150) 100%);
+    box-shadow: inset 0 1px 1px oklch(0.6 0.05 150);
+  }
+  .scanlines::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, oklch(0.6 0.15 145 / 0.03) 2px, oklch(0.6 0.15 145 / 0.03) 3px);
+    pointer-events: none;
+  }
+  .btn-doom {
+    background: var(--gradient-emerald);
+    color: oklch(0.1 0.02 150);
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    border: 1px solid oklch(0.7 0.18 145);
+    box-shadow: var(--shadow-glow);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: none;
+  }
+  .btn-doom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 50px oklch(0.7 0.22 145 / 0.8);
+  }
+  .btn-ghost-doom {
+    background: transparent;
+    color: var(--doom-glow);
+    border: 1px solid var(--doom-green);
+    font-family: var(--font-display);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    transition: all 0.3s ease;
+    cursor: none;
+  }
+  .btn-ghost-doom:hover {
+    background: oklch(0.55 0.2 145 / 0.1);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@keyframes doom-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+.animate-doom-pulse { animation: doom-pulse 3s ease-in-out infinite; }
+.animate-float { animation: float-slow 4s ease-in-out infinite; }
